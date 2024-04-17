@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>너목보</title>
+</head>
+<body>
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">음성합성 서비스</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">자신의 목소리를 노래에 입혀보세요!</h5>
+            <p class="card-text">음성합성 서비스는 사용자의 목소리를 기반으로 노래를 생성하는 서비스입니다.</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2>주요 기능</h2>
+        <ul class="list-group">
+            <li class="list-group-item">사용자의 목소리를 분석하여 음악으로 변환</li>
+            <li class="list-group-item">다양한 음악 스타일 및 장르 선택 가능</li>
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <h2>이점</h2>
+        <ul class="list-group">
+            <li class="list-group-item">창의적이고 재미있는 노래 생성</li>
+            <li class="list-group-item">목소리를 통한 자아 표현의 기회 제공</li>
+            <li class="list-group-item">음악 제작에 대한 접근성 향상</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
