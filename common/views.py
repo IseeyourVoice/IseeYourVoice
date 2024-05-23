@@ -23,3 +23,10 @@ def signup(request):
     else:
         form = UserForm()
     return render(request,'common/signup.html',{'form':form})
+
+def soundedit(request):
+    return render(request,'common/soundedit.html')
+
+def soundedit_download(request):
+    f = request.POST.get('file')
+    return render(request,'common/soundedit_download.html', {'filename' : f})
