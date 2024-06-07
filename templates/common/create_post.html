@@ -1,0 +1,23 @@
+<!-- create_post.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>게시글 작성</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="audio_file" class="form-label">음원 파일</label>
+            <input type="file" class="form-control" id="audio_file" name="audio_file">
+        </div>
+        <button type="submit" class="btn btn-primary">작성하기</button>
+    </form>
+{% endblock %}

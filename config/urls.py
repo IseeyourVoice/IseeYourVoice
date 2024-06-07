@@ -20,6 +20,6 @@ from django.urls import path, include
 import templates
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('isyv/', include(('isyv.urls', 'isyv'))),  # include() 함수에 2개의 위치 인수 전달
-    path('common/', include(('common.urls','common'))),
+    path('', include(('isyv.urls', 'isyv'))),  # include() 함수에 2개의 위치 인수 전달
+    path('user/', include(('user.urls','user'))),
 ]

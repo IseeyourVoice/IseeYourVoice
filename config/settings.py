@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n7te-phrn$jo9a_xv#ttv(jou%#69ia(-i*_7@#^p$lnn7v4ik'
 
 # 로그인 성공후 이동하는 URL
-LOGIN_REDIRECT_URL = '/isyv/'
+LOGIN_REDIRECT_URL = '/'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,16 +37,19 @@ INSTALLED_APPS = [
     'bootstrap4',
     'config',
     'isyv',
-    'common',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap4',
 
 ]
 
+CRISPY_TEMPLATE_PACK = 'crispy_bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
