@@ -1,5 +1,7 @@
+import os
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 
 # views.py
 
@@ -9,6 +11,10 @@ from .forms import CommentForm
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 
+from .forms import FileUploadForm
+from .models import FileUpload
+
+from .soundedit import soundediting
 
 @login_required
 def create_post(request):
@@ -46,15 +52,48 @@ def index(request):
     return render(request, 'index.html')
 
 
-def soundedit(request):
+def soundedit(request): # 업로드 구현, 현재 사용하지 않음
     return render(request, 'common/soundedit.html')
 
 
 def soundedit_download(request):
-    f = request.POST.get('file')
-    return render(request, 'common/soundedit_download.html', {'filename': f})
+    context = {
+        'media_url': settings.MEDIA_URL
+    }
+    return render(request, 'common/soundedit_download.html', context)
 
 
 def board(request):  # 게시판 뷰 추가
     posts = Post.objects.all()
     return render(request, 'common/board.html', {'posts': posts})
+
+
+def fileUpload(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        cut_start = request.POST['cut_start']
+        cut_end = request.POST['cut_end']
+        pitch = request.POST['pitch']
+        sound_file = request.FILES["sound_file"]
+
+        soundediting(cut_start, cut_end, pitch, sound_file)
+
+        file_path = str(sound_file)
+        # os.download_file()
+
+        fileupload = FileUpload(
+            title = title,
+            cut_start = cut_start,
+            cut_end = cut_end,
+            pitch = pitch,
+            sound_file = sound_file,
+        )
+        fileupload.save()
+
+        return render(request, 'common/soundedit_download.html')
+    else:
+        fileuploadForm = FileUploadForm
+        context = {
+            'fileuploadForm': fileuploadForm,
+        }
+        return render(request, 'common/soundedit.html', context)

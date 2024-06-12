@@ -1,25 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center my-3">
-    <form action="/soundedit_download/" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
+<div class="container">
+    <form method="POST" action="/soundedit/" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="file">편집할 오디오 파일을 업로드하세요.</label>
-        <br><br>
-        <input type="file" id="file" name="file" accept="audio/*">
-        <br><br>
-        <button type="submit">Upload</button>
-        </div>
-        <div class="mb-3">
-            <label>자르기</label>
-            <br>
-            <input type="text" placeholder="부터" />
-            <input type="text" placeholder="까지" />
-        </div>
-        <div class="mb-3">
-            <label>피치 조절</label>
-            <input type="range" min="0" max="100">
-        </div>
+        {% bootstrap_form fileuploadForm %}
+        <input type="submit" class="btn btn-primary col-12" value="제출">
     </form>
 </div>
 {% endblock %}
