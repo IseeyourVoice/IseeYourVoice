@@ -46,10 +46,12 @@ def index(request):
     return render(request, 'index.html')
 
 
+@login_required
 def soundedit(request):
     return render(request, 'common/soundedit.html')
 
 
+@login_required
 def soundedit_download(request):
     f = request.POST.get('file')
     return render(request, 'common/soundedit_download.html', {'filename': f})
