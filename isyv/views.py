@@ -52,10 +52,12 @@ def index(request):
     return render(request, 'index.html')
 
 
-def soundedit(request): # 업로드 구현, 현재 사용하지 않음
+@login_required
+def soundedit(request):
     return render(request, 'common/soundedit.html')
 
 
+@login_required
 def soundedit_download(request):
     context = {
         'media_url': settings.MEDIA_URL
