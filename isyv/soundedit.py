@@ -18,9 +18,6 @@ def soundediting(cut_start, cut_end, pitch, sound_file):
     adjusted_audio = speedup(cropped_audio, playback_speed=pitch_change)
 
     # 결과 저장 (옵션)
-    output_file = "media/" + str(input_file)
+    output_file = "media/" + "sample.mp3"
     if output_file:
         adjusted_audio.export(output_file, format="mp3")
-        print(f"파일이 {output_file}로 저장되었습니다.")
-    else:
-        print("파일을 저장하지 않았습니다.")

@@ -97,3 +97,7 @@ def fileUpload(request):
             'fileuploadForm': fileuploadForm,
         }
         return render(request, 'common/soundedit.html', context)
+
+
+def voice_learning(request):
+    return render(request, 'common/voice_learning.html')
