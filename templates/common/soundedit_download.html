@@ -3,9 +3,10 @@
 <div class="container d-flex justify-content-center align-items-center my-3">
   <div class="mb-3">
     <label>편집이 완료되었습니다!</label>
-    <br><br>
-    <button>편집된 음원 다운로드</button>
-    <button>돌아가기</button>
+    <br>
+    <a href="../media/sample.mp3" download><button>다운로드</button></a>
+    <br>
+    <a href="{% url 'isyv:index' %}"><button>돌아가기</button></a>
   </div>
 </div>
 {% endblock %}

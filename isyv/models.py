@@ -31,3 +31,14 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     edited_at = models.DateTimeField(auto_now_add=True)
+
+
+class FileUpload(models.Model):
+    title = models.CharField(max_length=20, null=True)
+    cut_start = models.IntegerField(null=True)
+    cut_end = models.IntegerField(null=True)
+    pitch = models.IntegerField(null=True)
+    sound_file = models.FileField(null=True, upload_to="", blank=True)
+
+    def __str__(self):
+        return self.title
