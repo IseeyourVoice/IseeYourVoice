@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,8 +28,21 @@ LOGIN_REDIRECT_URL = '/'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 ALLOWED_HOSTS = []
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # 메일을 호스트하는 서버
+EMAIL_PORT = '587'  # gmail과의 통신하는 포트
+EMAIL_HOST_USER = 'cgantro@gmail.com'  # 발신할 이메일
+EMAIL_HOST_PASSWORD = os.environ.get('GOOGLE_EMAIL_HOST_PASSWORD')  # 발신할 메일의 앱 비밀번호
+EMAIL_USE_TLS = True  # TLS 보안 방법
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
 
 # Application definition
 
@@ -78,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -88,7 +100,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -108,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -119,7 +129,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

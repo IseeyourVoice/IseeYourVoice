@@ -1,0 +1,19 @@
+# Ignore .venv directory
+.venv/
+
+# Other common ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyCharm specific
+.idea/
+*.iml
+*.ipr
+.env
