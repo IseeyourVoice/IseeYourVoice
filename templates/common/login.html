@@ -1,19 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center my-3">
-    <form method="post" action="{% url 'user:login' %}" style="max-width: 1000px;">
+
+<div class="container my-3">
+    <form method="post" action="{% url 'user:login' %}" style="max-width: 200px; width: 100%; margin: auto;">
+        <div>{% include "form_errors.html" %}</div>
         {% csrf_token %}
-        {# django.contrib.auth에서는 username, password를 필수로 요구합니다 #}
-        {% include "form_errors.html" %}
+
         <div class="mb-3">
-            <label for="username" class="text-light">사용자ID</label>
-            <input type="text" class="form-control bg-dark text-light" name="username" id="username"
-                   value="{{ form.username.value|default_if_none:'' }}" >
+            <label for="email" class="text-light">이메일</label>
+            {{ form.username }}
         </div>
         <div class="mb-3">
             <label for="password" class="text-light">비밀번호</label>
-            <input type="password" class="form-control bg-dark text-light" name="password" id="password"
-                   value="{{ form.password.value|default_if_none:'' }}" >
+            {{ form.password }}
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>

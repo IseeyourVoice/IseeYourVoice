@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h1 class="mt-5 mb-4">게시판</h1>
-    <a href="{% url 'isyv:create_post' %}" class="btn btn-primary mb-3">게시글 작성</a>
+    <a id="create_post_btn" href="{% url 'isyv:create_post' %}" class="btn btn-primary mb-3">게시글 작성</a>
     <div class="row">
         {% if posts %}
             {% for post in posts %}
@@ -26,4 +26,17 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+document.getElementById("create_post_btn").addEventListener("click", function(event) {
+    // 로그인 여부를 확인하는 코드 (이 부분을 해당 웹사이트의 로그인 여부를 확인하는 코드로 변경해야 합니다)
+    var isLoggedIn = {{ user.is_authenticated|yesno:"true,false" }};
+
+    // 만약 로그인되어 있지 않다면 경고 메시지를 표시하고 이벤트를 중단합니다.
+    if (!isLoggedIn) {
+        alert("로그인이 필요합니다.");
+        event.preventDefault(); // 기본 동작(링크 이동)을 중단합니다.
+    }
+});
+</script>
 {% endblock %}
