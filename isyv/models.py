@@ -43,3 +43,12 @@ class FileUpload(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class VoiceLearning(models.Model):
+    file = models.FileField(null=True, upload_to="", blank=True)
+
+
+class VoiceCreate(models.Model):
+    model = models.FileField(null=True, upload_to="", blank=True)
+    file = models.FileField(null=True, upload_to="", blank=True)

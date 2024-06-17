@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center my-3">
+  <div class="mb-3">
+        <form method="POST" action="/voice_learning/" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form voiceLearningForm %}
+            <input type="submit" class="btn btn-primary col-12" value="제출">
+        </form>
+  </div>
+</div>
+{% endblock %}
+
+<!--
+배포 시 해당 부분들이 서버 환경에서 작동되도록 이식 필요:
+    python infer.py # 결과물 뽑기 실행, "test.wav"에 대하여.
+-->

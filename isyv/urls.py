@@ -16,6 +16,8 @@ urlpatterns = [
     path('soundedit/', views.fileUpload, name='soundedit'), # 업로드 구현하며 수정, 기존은 views.soundedit
     path('soundedit_download/', views.soundedit_download, name='soundedit_download'),
     path('voice_learning/', views.voice_learning, name='voice_learning'),
+    path('voice_learning/learning', views.voice_learning_learning, name='voice_learning_learning'),
+    path('voice_learning/create', views.voice_learning_create, name='voice_learning_create'),
 ]
 
 if settings.DEBUG:

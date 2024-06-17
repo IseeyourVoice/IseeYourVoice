@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center my-3">
+  <div class="mb-3">
+        <form method="POST" action="/voice_learning/" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form voiceCreateForm %}
+            <input type="submit" class="btn btn-primary col-12" value="제출">
+        </form>
+  </div>
+</div>
+{% endblock %}
+
+<!--
+배포 시 해당 부분들이 서버 환경에서 작동되도록 이식 필요:
+    preprocess 폴더에 학습할 파일 넣어주기
+    python sep_wav.py #데이터 전처리 실행
+    preprocess_out/voice의 파일들을 복사해서 data/raw/test에 넣어준다.
+    python preprocessing/binarize.py --config training/config_nsf.yaml #바이너리화
+    python run.py --config training/config_nsf.yaml --exp_name test --reset #학습
+-->

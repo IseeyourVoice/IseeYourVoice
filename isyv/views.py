@@ -11,8 +11,8 @@ from .forms import CommentForm
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 
-from .forms import FileUploadForm
-from .models import FileUpload
+from .forms import FileUploadForm, VoiceLearningForm, VoiceCreateForm
+from .models import FileUpload, VoiceLearning, VoiceCreate
 
 from .soundedit import soundediting
 
@@ -101,3 +101,55 @@ def fileUpload(request):
 
 def voice_learning(request):
     return render(request, 'common/voice_learning.html')
+
+
+def voiceLearning(request):
+    if request.method == 'POST':
+        file = request.FILES["file"]
+
+        voicelearning = VoiceLearning(
+            file=file
+        )
+        voicelearning.save()
+
+        return render(request, 'common/voice_learning_learning.html')
+    else:
+        voiceLearningForm = VoiceLearningForm
+        context = {
+            'voiceLearningForm': voiceLearningForm,
+        }
+        return render(request, 'common/voice_learning.html', context)
+
+
+def voiceCreate(request):
+    if request.method == 'POST':
+        model = request.FILES["model"]
+        file = request.FILES["file"]
+
+        voicecreate = VoiceCreate(
+            model=model,
+            file=file
+        )
+        voicecreate.save()
+
+        return render(request, 'common/voice_learning_create.html')
+    else:
+        voiceCreateForm = VoiceCreateForm
+        context = {
+            'voiceCreateForm': voiceCreateForm,
+        }
+        return render(request, 'common/voice_learning.html', context)
+
+
+def voice_learning_learning(request):
+    context = {
+        'media_url': settings.MEDIA_URL
+    }
+    return render(request, 'common/voice_learning_learning.html', context)
+
+
+def voice_learning_create(request):
+    context = {
+        'media_url': settings.MEDIA_URL
+    }
+    return render(request, 'common/voice_learning_create.html', context)
